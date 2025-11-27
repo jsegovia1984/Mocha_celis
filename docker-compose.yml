@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    # Comando para iniciar el servidor
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      # PERSISTENCIA DE BASE DE DATOS Y CÓDIGO
+      # Esto conecta tu carpeta actual con la del contenedor.
+      # Tu archivo db.sqlite3 se guardará en tu máquina real.
+      - ./:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      # Si usas variables de entorno para la configuración, van aquí
